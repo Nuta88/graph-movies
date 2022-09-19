@@ -45,9 +45,12 @@ jobs:
         with:
           node-version: 12
 
-      # ESLint and Prettier must be in `package.json`
       - name: Install Node.js dependencies
         run: npm ci
+        working-directory: graphql-front
+
+      - name: Install Lint
+        run: npx run eslint . --ext .ts,.tsx
         working-directory: graphql-front
 
       - name: Run linters
