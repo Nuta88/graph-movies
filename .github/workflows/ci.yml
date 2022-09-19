@@ -23,7 +23,7 @@ jobs:
       - name: build
         run: npm run build
         working-directory: graphql-front
-      - name: e2e tests
+      - name: unit tests
         run: npm test
         working-directory: graphql-front
 
@@ -49,7 +49,5 @@ jobs:
         working-directory: graphql-front
 
       - name: Run linters
-        uses: wearerequired/lint-action@v2
-        with:
-          eslint: true
-          prettier: true
+        run: npm lint
+        working-directory: graphql-front
