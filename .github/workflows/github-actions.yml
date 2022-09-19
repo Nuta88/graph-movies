@@ -33,6 +33,10 @@ jobs:
       - name: Check out Git repository
         uses: actions/checkout@v2
 
+      - name: Install modules
+        run: npm install
+        working-directory: graphql-front
+
       - name: Set up Node.js
         uses: actions/setup-node@v1
         with:
