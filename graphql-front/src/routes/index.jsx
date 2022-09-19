@@ -6,8 +6,14 @@ import MovieDetails from '../pages/Movies/components/MovieDetails';
 const AppRouters = () => (
   <BrowserRouter>
     <Routes>
-      <Route path="/" element={<Movies />} />
-      <Route path="/movie/:id" element={<MovieDetails />} />
+      <Route
+        path="/"
+        element={<Movies />}
+      />
+      <Route
+        path="/movie/:id"
+        element={<MovieDetails />}
+      />
     </Routes>
   </BrowserRouter>
 );

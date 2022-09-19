@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
+import PropTypes from 'prop-types';
 import {
   Box,
   IconButton,
@@ -16,7 +17,10 @@ import EditIcon from '@mui/icons-material/Edit';
 
 import { GET_MOVIES } from '../../../../graphql/queries';
 
-const MovieTable = ({ onEdit, onRemove }) => {
+const MovieTable = ({
+  onEdit,
+  onRemove
+}) => {
   const { loading, data: { movies } = {} } = useQuery(GET_MOVIES);
 
   const handleRemoveMovie = (id) => {
@@ -25,7 +29,10 @@ const MovieTable = ({ onEdit, onRemove }) => {
 
   return (
     <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 650 }} aria-label="simple table">
+      <Table
+        sx={{ minWidth: 650 }}
+        aria-label="simple table"
+      >
         <TableHead>
           <TableRow>
             <TableCell>Name</TableCell>
@@ -35,36 +42,46 @@ const MovieTable = ({ onEdit, onRemove }) => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {!loading &&
-            movies?.map((row) => (
-              <TableRow
-                key={row.id}
-                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+          {!loading && movies?.map((row) => (
+            <TableRow
+              key={row.id}
+              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+            >
+              <TableCell
+                component="th"
+                scope="row"
               >
-                <TableCell component="th" scope="row">
-                  <Link to={`/movie/${row.id}`}>{row.name}</Link>
-                </TableCell>
-                <TableCell align="right">{row.genre}</TableCell>
-                <TableCell align="right">{row.director?.name}</TableCell>
-                <TableCell>
-                  <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
-                    <IconButton
-                      aria-label="delete"
-                      onClick={() => handleRemoveMovie(row.id)}
-                    >
-                      <DeleteIcon />
-                    </IconButton>
-                    <IconButton aria-label="edit" onClick={() => onEdit(row)}>
-                      <EditIcon />
-                    </IconButton>
-                  </Box>
-                </TableCell>
-              </TableRow>
-            ))}
+                <Link to={`/movie/${row.id}`}>{row.name}</Link>
+              </TableCell>
+              <TableCell align="right">{row.genre}</TableCell>
+              <TableCell align="right">{row.director?.name}</TableCell>
+              <TableCell>
+                <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
+                  <IconButton
+                    aria-label="delete"
+                    onClick={() => handleRemoveMovie(row.id)}
+                  >
+                    <DeleteIcon />
+                  </IconButton>
+                  <IconButton
+                    aria-label="edit"
+                    onClick={() => onEdit(row)}
+                  >
+                    <EditIcon />
+                  </IconButton>
+                </Box>
+              </TableCell>
+            </TableRow>
+          ))}
         </TableBody>
       </Table>
     </TableContainer>
   );
+};
+
+MovieTable.propTypes = {
+  onEdit: PropTypes.func.isRequired,
+  onRemove: PropTypes.func.isRequired,
 };
 
 export default MovieTable;

@@ -33,7 +33,9 @@ jest.mock('react-router-dom', () => ({
 
 test('renders Movie details component', () => {
   render(
-    <MockedProvider mocks={mocks} addTypename={false}>
+    <MockedProvider
+      mocks={mocks}
+      addTypename={false}>
       <MovieDetails />
     </MockedProvider>
   );

@@ -1,11 +1,23 @@
 import { useFormik } from 'formik';
 import { useQuery } from '@apollo/client';
-import { Box, Button, Dialog, DialogTitle, TextField } from '@mui/material';
+import PropTypes from 'prop-types';
+import {
+  Box,
+  Button,
+  Dialog,
+  DialogTitle,
+  TextField
+} from '@mui/material';
 
 import { Select } from '../../../../components/Form';
 import { GET_DIRECTORS } from '../../../../graphql/queries';
 
-const MovieModal = ({ isOpen, movie, onClose, onCreateOrUpdate }) => {
+const MovieModal = ({
+  isOpen,
+  movie,
+  onClose,
+  onCreateOrUpdate
+}) => {
   const title = movie ? `Update ${movie?.name} movie` : 'Add new movie';
   const { data: { directors } = {} } = useQuery(GET_DIRECTORS);
 
@@ -31,7 +43,10 @@ const MovieModal = ({ isOpen, movie, onClose, onCreateOrUpdate }) => {
   };
 
   return (
-    <Dialog onClose={handleClose} open={isOpen}>
+    <Dialog
+      onClose={handleClose}
+      open={isOpen}
+    >
       <DialogTitle>{title}</DialogTitle>
       <Box sx={{ margin: '0 10px 16px' }}>
         <form onSubmit={formik.handleSubmit}>
@@ -77,6 +92,21 @@ const MovieModal = ({ isOpen, movie, onClose, onCreateOrUpdate }) => {
       </Box>
     </Dialog>
   );
+};
+
+MovieModal.propTypes = {
+  isOpen: PropTypes.bool.isRequired,
+  movie: PropTypes.shape({
+    id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+    name: PropTypes.string.isRequired,
+    genre: PropTypes.string.isRequired,
+    director: PropTypes.shape({
+      id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+      name: PropTypes.string.isRequired,
+    }),
+  }).isRequired,
+  onClose: PropTypes.func.isRequired,
+  onCreateOrUpdate: PropTypes.func.isRequired,
 };
 
 export default MovieModal;

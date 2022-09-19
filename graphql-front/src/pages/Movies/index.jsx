@@ -20,8 +20,8 @@ const Movies = () => {
 
   const onToggleModal = () => setIsOpenModal(!isOpenModal);
 
-  const handleEditMovie = (movie) => {
-    setMovie(movie);
+  const handleEditMovie = (selectedMovie) => {
+    setMovie(selectedMovie);
     onToggleModal();
   };
 
@@ -32,10 +32,17 @@ const Movies = () => {
 
   return (
     <Box>
-      <Button variant="contained" size="large" onClick={handleCloseModal}>
+      <Button
+        variant="contained"
+        size="large"
+        onClick={handleCloseModal}
+      >
         Add movie
       </Button>
-      <MovieTable onEdit={handleEditMovie} onRemove={removeMovie} />
+      <MovieTable
+        onEdit={handleEditMovie}
+        onRemove={removeMovie}
+      />
       {isOpenModal && (
         <MovieModal
           isOpen={isOpenModal}

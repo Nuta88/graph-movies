@@ -8,3 +8,12 @@ export const GET_DIRECTORS = gql`
     }
   }
 `;
+
+export const GET_DIRECTOR = gql`
+  query GetDirector($directorId: ID) {
+    director(id: $directorId) {
+      id
+      name
+    }
+  }
+`;

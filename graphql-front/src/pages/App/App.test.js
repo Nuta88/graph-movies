@@ -6,7 +6,9 @@ const mocks = [];
 
 test('renders App component', () => {
   render(
-    <MockedProvider mocks={mocks} addTypename={false}>
+    <MockedProvider
+      mocks={mocks}
+      addTypename={false}>
       <App />
     </MockedProvider>
   );

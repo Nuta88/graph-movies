@@ -13,7 +13,10 @@ const MovieDetails = () => {
   });
 
   return (
-    <Card sx={{ height: '100%' }} data-testid="movie-detail-card">
+    <Card
+      sx={{ height: '100%' }}
+      data-testid="movie-detail-card"
+    >
       <CardContent sx={{ height: '100%' }}>
         {!loading && movie && (
           <Box
