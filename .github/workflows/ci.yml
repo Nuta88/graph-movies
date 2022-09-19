@@ -6,6 +6,7 @@ on:
     branches: [ main ]
 jobs:
   build:
+    name: Run Build
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -28,33 +29,3 @@ jobs:
       - name: unit tests
         run: npm test
         working-directory: graphql-front
-
-  run-linters:
-    name: Run ESLint
-    runs-on: ubuntu-latest
-    steps:
-      - name: Check out Git repository
-        uses: actions/checkout@v2
-
-      - name: Install modules
-        run: npm install
-        working-directory: graphql-front
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v1
-        with:
-          node-version: 12
-
-      - name: Install Node.js dependencies
-        run: npm ci
-        working-directory: graphql-front
-
-      - name: Install Lint
-        run: npx run eslint . --ext .ts,.tsx
-        working-directory: graphql-front
-
-      - name: Run linters
-        uses: wearerequired/lint-action@v2
-        with:
-          eslint: true
-          working-directory: graphql-front
