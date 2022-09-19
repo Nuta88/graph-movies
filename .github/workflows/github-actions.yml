@@ -18,9 +18,13 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - name: npm install modules
         run: npm install
+        working-directory: graphql-front
       - name: build
         run: npm run build
+        working-directory: graphql-front
       - name: e2e tests
         run: npm test
+        working-directory: graphql-front
       - name: lint
         run: npm lint
+        working-directory: graphql-front
