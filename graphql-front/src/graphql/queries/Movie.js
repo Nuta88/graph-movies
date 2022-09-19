@@ -1,14 +1,14 @@
-import { gql } from "@apollo/client";
+import { gql } from '@apollo/client';
 
 export const GET_MOVIES = gql`
   query GetMovies {
     movies {
-      id,
-      name,
-      genre,
+      id
+      name
+      genre
       director {
-        id,
-        name,
+        id
+        name
         age
       }
     }
@@ -18,11 +18,11 @@ export const GET_MOVIES = gql`
 export const GET_MOVIE = gql`
   query GetMovie($movieId: ID) {
     movie(id: $movieId) {
-      id,
-      name,
-      genre,
+      id
+      name
+      genre
       director {
-        name,
+        name
         age
       }
     }

@@ -1,17 +1,15 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
-import Movies from "../pages/Movies";
-import MovieDetails from "../pages/Movies/components/MovieDetails";
+import Movies from '../pages/Movies';
+import MovieDetails from '../pages/Movies/components/MovieDetails';
 
- const AppRouters = () => {
-    return (
-        <BrowserRouter>
-            <Routes>
-                <Route path="/" element={<Movies />} />
-                <Route path="/movie/:id" element={<MovieDetails />} />
-            </Routes>
-        </BrowserRouter>
-    );
-};
+const AppRouters = () => (
+  <BrowserRouter>
+    <Routes>
+      <Route path="/" element={<Movies />} />
+      <Route path="/movie/:id" element={<MovieDetails />} />
+    </Routes>
+  </BrowserRouter>
+);
 
- export default AppRouters;
+export default AppRouters;
